@@ -1,14 +1,9 @@
 import React from 'react';
-import {store, stateMapper} from '../store/store.js';
+import { stateMapper} from '../store/store.js';
 import {connect} from 'react-redux';
 
 class VideosComponent extends  React.Component {
-    componentDidMount() {
-        store.dispatch({
-            type: "FETCH_VIDEOS"
-        });
-    }
-
+     
     renderVideos() {
         return this.props.videos.map(v => {
                 return (

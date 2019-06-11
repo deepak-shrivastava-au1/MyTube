@@ -1,11 +1,18 @@
 import React from 'react';
+import Videos from './videos.js';
 
 
 
 class Search extends React.Component {
+
+    
     render(){
         return(
-           <p>Search page</p>
+            <div>
+                <h2>Trending Videos</h2>
+                <hr />
+                <Videos />
+            </div>
         );
     }
 }
