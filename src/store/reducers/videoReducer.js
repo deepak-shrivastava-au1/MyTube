@@ -3,6 +3,11 @@ import {fetchVideos} from '../api/youtube.js';
 import {store} from  '../store.js'
 
 function videosReducer(videos = [], action) {
+
+    if(action.type === "CLEAR_VIDEOS") {
+        return [];
+    }
+
     if(action.type === "FETCH_VIDEOS") {
         
         //do the ajax call here
