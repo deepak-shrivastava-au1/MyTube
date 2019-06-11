@@ -27,7 +27,11 @@ class SearchComponent extends React.Component {
     }
 
     buttonClicked() {
-        console.log(this.state.query);
+       this.props.dispatch({
+           type: "FETCH_VIDEOS",
+           videoType: "search",
+           query: this.state.query
+       });
 
     }
     render(){

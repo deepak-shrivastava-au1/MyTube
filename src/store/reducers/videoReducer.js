@@ -11,7 +11,7 @@ function videosReducer(videos = [], action) {
     if(action.type === "FETCH_VIDEOS") {
         
         //do the ajax call here
-        fetchVideos( store, action.videoType);
+        fetchVideos( store, action);
     }
 
     if(action.type === "VIDEOS_LOADED") {
