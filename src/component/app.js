@@ -1,5 +1,5 @@
 import React from 'react';
-import Videos from './videos.js';
+
 import {store, stateMapper} from '../store/store.js';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -21,8 +21,8 @@ class App extends React.Component {
                                 </div>
 
                                 <div className = "col-md-9">
-                                    <Route  path = "/" exact ={true} Component = {Trending} />
-                                    <Route  path = "/search" Component = {Search} />
+                                    <Route  path = "/" exact ={true} component = {Trending} />
+                                    <Route  path = "/search" component = {Search} />
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,16 @@
 import React from 'react';
+import Videos from './videos.js';
 
 
 
 class Trending extends React.Component {
     render(){
         return(
-            <p>Trending page</p>
+            <div>
+                <h2>Trending Videos</h2>
+                <hr />
+                <Videos />
+            </div>
         );
     }
 }
