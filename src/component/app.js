@@ -3,6 +3,8 @@ import Videos from './videos.js';
 import {store, stateMapper} from '../store/store.js';
 import {Provider} from 'react-redux';
 import Menu from './menu.js';
+import Trending from './trending.js';
+import Search from './search.js';
  
 
 
@@ -19,7 +21,8 @@ class App extends React.Component {
                         <div className = "col-md-9">
                             <h2>MyTube - Trending Videos</h2>
                             <hr />
-                            <Videos /> 
+                            <Trending />
+                            <Search />
                         </div>
                     </div>
                 </div>
