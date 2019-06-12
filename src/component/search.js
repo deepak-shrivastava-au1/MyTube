@@ -37,13 +37,15 @@ class SearchComponent extends React.Component {
     render(){
         return(
             <div>
-                <h2>Search Videos</h2>
+                <h2 className = "text-success">Search Videos Here</h2>
                 <hr />
                 <div className = "form-row">
                     <div className ="col">
                         <input onChange = {this.inputChanged.bind(this)} type = "text" className = "form-control form-control-lg" />
                     </div>
-                        <button onClick = {this.buttonClicked.bind(this)} className = "btn btn-success btn-lg">Search</button>
+                        <button onClick = {this.buttonClicked.bind(this)} className = "btn btn-success btn-lg">
+                            <span className = "oi oi-magnifying-glass"></span>
+                            </button>
                     </div>
                 <Videos />
             </div>
