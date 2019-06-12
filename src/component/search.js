@@ -11,11 +11,11 @@ class SearchComponent extends React.Component {
         this.state = {
             query: ""
         };
-         this.inputChanged = this.inputChanged.bind(this);
-         this.buttonClicked= this.buttonClicked.bind(this);
+        //  this.inputChanged = this.inputChanged.bind(this);
+        //  this.buttonClicked= this.buttonClicked.bind(this);
     }
 
-    componentDidMount() {
+    componentWillUnmount() {
         this.props.dispatch({
             type: "CLEAR_VIDEOS"
         });
@@ -41,9 +41,9 @@ class SearchComponent extends React.Component {
                 <hr />
                 <div className = "form-row">
                     <div className ="col">
-                        <input onChange = {this.inputChanged} type = "text" className = "form-control form-control-lg" />
+                        <input onChange = {this.inputChanged.bind(this)} type = "text" className = "form-control form-control-lg" />
                     </div>
-                        <button onClick = {this.buttonClicked} className = "btn btn-success btn-lg">Search</button>
+                        <button onClick = {this.buttonClicked.bind(this)} className = "btn btn-success btn-lg">Search</button>
                     </div>
                 <Videos />
             </div>
