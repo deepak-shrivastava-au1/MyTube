@@ -8,7 +8,7 @@ function currentPlayerVideoReducer(currentPlayerVideo = {}, action) {
         fetchCurrentVideo(store, action);
     }
     if(action.type === "VIDEO_DATA_LOADED") {
-        return action.videoData;
+        return action.videoData
     }
      return currentPlayerVideo;
 }
