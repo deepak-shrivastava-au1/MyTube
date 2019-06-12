@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Menu from './menu.js';
 import Trending from './trending.js';
 import Search from './search.js';
+import VideoPlayer from './videoPlayer.js';
  
 
 
@@ -23,6 +24,7 @@ class App extends React.Component {
                                 <div className = "col-md-9">
                                     <Route  path = "/" exact ={true} component = {Trending} />
                                     <Route  path = "/search" component = {Search} />
+                                    <Route  path = "/player/:videoId" component = {VideoPlayer} />
                                 </div>
                             </div>
                         </div>
