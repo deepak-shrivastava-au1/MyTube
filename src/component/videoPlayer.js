@@ -4,6 +4,14 @@ import {store, stateMapper} from  '../store/store.js';
 
 
 class VideoPlayerComponent extends React.Component {
+
+    componentDidMount() {
+        this.props.dispatch({
+            type: "FETCH_VIDEOS_DATA",
+            videoId: this.props.match.params.videoId
+        });
+    }
+
     render() {
         return(
             <div>
