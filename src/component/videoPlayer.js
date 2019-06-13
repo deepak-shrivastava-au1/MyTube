@@ -5,6 +5,14 @@ import { stateMapper} from  '../store/store.js';
 
 class VideoPlayerComponent extends React.Component {
 
+    constructor(props){
+        super(props);
+        
+        this.state = {
+            shwoMoreClicked: false
+        };
+    }
+
     componentDidMount() {
         this.props.dispatch({
             type: 'FETCH_VIDEOS_DATA',
@@ -27,19 +35,26 @@ class VideoPlayerComponent extends React.Component {
         }
     }
 
+    shwoMoreClicked(){
+        this.setState({
+            shwoMoreClicked: true
+        })
+    }
+
     renderDescription() {
-        if(!this.props.currentPlayerVideo.snippet) {
-            return null;
+        if(this.state.shwoMoreClicked){
+            return(
+                <p>
+                    {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.snippet.description}
+                </p>
+
+            );
         }
-        else {
-            let description = this.props.currentPlayerVideo.snippet.description;
-            if(description.length> 500) {
-                return `${description.slice(0, 500)}...Read More`;
-            }else {
-                return description;
-            }
-            
-        }
+        return <p>
+            {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.snippet.shortDescription}
+            <button onClick = {this.shwoMoreClicked.bind(this)} className = "btn btn-link">...Show More</button>
+        </p>
+
     }
 
     render() {
@@ -53,13 +68,11 @@ class VideoPlayerComponent extends React.Component {
                  <div className = "row">
                     <div className = "col-md-12">
                         <h2>
-                        <span className="oi text-success" data-glyph="eye"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}
-                        </h2>
-                        <h2>
-                        <span className="oi oi-thumb-up text-success"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}
-                        </h2>
-                        <h2>
-                        <span className="oi oi-thumb-down text-success"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
+                        <span className="oi oi-eye text-dark"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}&emsp; &emsp;
+                        
+                        <span className="oi oi-thumb-up text-success"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}&emsp; &emsp;
+                        
+                        <span className="oi oi-thumb-down text-dark"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
                         </h2>
                         <hr />
                     </div>
