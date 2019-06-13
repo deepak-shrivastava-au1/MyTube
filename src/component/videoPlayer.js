@@ -30,6 +30,19 @@ class VideoPlayerComponent extends React.Component {
                     <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${this.props.match.params.videoId}?rel=0`} allowFullScreen></iframe>
                  </div> 
                  <div className = "row">
+                    <div className = "col-md-12">
+                        <h2>
+                        <span class="oi" data-glyph="eye"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}
+                        </h2>
+                        <h2>
+                        <span class="oi oi-thumb-up"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}
+                        </h2>
+                        <h2>
+                        <span class="oi oi-thumb-down"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
+                        </h2>
+                    </div>
+                 </div>
+                 <div className = "row">
                      <div className = "col-md-8">
                          {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.snippet.description}
                      </div>
