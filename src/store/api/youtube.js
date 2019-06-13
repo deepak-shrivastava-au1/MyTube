@@ -52,4 +52,22 @@ function fetchCurrentVideo(store, action) {
         console.log("Fetch Error ==>", err);
     });
 }
-export {fetchVideos, fetchCurrentVideo};
+
+function fetchVideoComments(store, action) {
+    let url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=${action.videoId}&key=${MYTUBE_CONFIG.YOUTUBE_API_KEY}`;
+
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        store.dispatch({
+            type: "VIDEO_COMMENTS_LOADED",
+            comments: data.items
+        })
+    })
+    .catch(function(err){
+        console.log("Fetch Error ==>", err);
+    });
+}
+export {fetchVideos, fetchCurrentVideo, fetchVideoComments};
