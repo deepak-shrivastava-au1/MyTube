@@ -2,13 +2,13 @@ import {fetchCurrentVideo} from '../api/youtube.js';
 import {store} from '../store.js';
  
 
-function currentPlayerVideoReducer(currentPlayerVideo = {}, action) {
+function currentPlayerVideoReducer(currentPlayerVideo = [], action) {
 
     if(action.type === "FETCH_VIDEO_DATA") {
         fetchCurrentVideo(store, action);
     }
-    if(action.type === "VIDEO_DATA_LOADED") {
-        return action.videoData
+    if(action.type === "VIDEOS_DATA_LOADED") {
+        currentPlayerVideo = action.videoData;
     }
      return currentPlayerVideo;
 }

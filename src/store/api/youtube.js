@@ -39,13 +39,13 @@ function fetchCurrentVideo(store, action) {
     let url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${action.videoId}&key=${MYTUBE_CONFIG.YOUTUBE_API_KEY}`
 
     fetch(url)
-    .then(function(response){
-        return response.json();
-    })
     .then(function(data){
+        return data.json();
+    })
+    .then(function(response){
         store.dispatch({
             type: "VIDEOS_DATA_LOADED",
-            videoData: data.items[0]
+            videoData: response.items[0]
         })
     })
     .catch(function(err){

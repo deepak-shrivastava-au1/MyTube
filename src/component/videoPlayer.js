@@ -7,14 +7,14 @@ class VideoPlayerComponent extends React.Component {
 
     componentDidMount() {
         this.props.dispatch({
-            type: "FETCH_VIDEOS_DATA",
+            type: 'FETCH_VIDEOS_DATA',
             videoId: this.props.match.params.videoId
         });
     }
 
     renderTitle(){
         if(!this.props.currentPlayerVideo.snippet) {
-            return "Loading..."
+            return 'Loading...'
         }
         else{
             return this.props.currentPlayerVideo.snippet.title;
@@ -24,10 +24,15 @@ class VideoPlayerComponent extends React.Component {
     render() {
         return(
             <div>
-                <h2 className = "text-danger">{this.renderTitle()}</h2>
+                <h2 className = "text-success">{this.renderTitle()}</h2>
                 <hr />
                     <div className="embed-responsive embed-responsive-16by9">
                     <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${this.props.match.params.videoId}?rel=0`} allowFullScreen></iframe>
+                 </div> 
+                 <div className = "row">
+                     <div className = "col-md-8">
+                         {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.snippet.description}
+                     </div>
                  </div>
             </div>
         );
