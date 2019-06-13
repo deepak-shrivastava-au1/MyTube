@@ -4,6 +4,10 @@ import {store} from '../store.js';
 
 function currentPlayerVideoReducer(currentPlayerVideo = [], action) {
 
+    if(action.type === "CLEAR_VIDEO_DATA") {
+        return {};
+    }
+
     if(action.type === "FETCH_VIDEO_DATA") {
         fetchCurrentVideo(store, action);
     }

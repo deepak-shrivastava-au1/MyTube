@@ -12,6 +12,12 @@ class VideoPlayerComponent extends React.Component {
         });
     }
 
+    componentWillUnmount() {
+        this.props.dispatch({
+            type: "CLEAR_VIDEO_DATA"
+        });
+    }
+
     renderTitle(){
         if(!this.props.currentPlayerVideo.snippet) {
             return 'Loading...'
