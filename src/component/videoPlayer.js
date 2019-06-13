@@ -27,6 +27,21 @@ class VideoPlayerComponent extends React.Component {
         }
     }
 
+    renderDescription() {
+        if(!this.props.currentPlayerVideo.snippet) {
+            return null;
+        }
+        else {
+            let description = this.props.currentPlayerVideo.snippet.description;
+            if(description.length> 500) {
+                return `${description.slice(0, 500)}...Read More`;
+            }else {
+                return description;
+            }
+            
+        }
+    }
+
     render() {
         return(
             <div>
@@ -38,19 +53,20 @@ class VideoPlayerComponent extends React.Component {
                  <div className = "row">
                     <div className = "col-md-12">
                         <h2>
-                        <span class="oi" data-glyph="eye"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}
+                        <span className="oi text-success" data-glyph="eye"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}
                         </h2>
                         <h2>
-                        <span class="oi oi-thumb-up"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}
+                        <span className="oi oi-thumb-up text-success"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}
                         </h2>
                         <h2>
-                        <span class="oi oi-thumb-down"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
+                        <span className="oi oi-thumb-down text-success"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
                         </h2>
+                        <hr />
                     </div>
                  </div>
                  <div className = "row">
                      <div className = "col-md-8">
-                         {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.snippet.description}
+                         {this.renderDescription()}
                      </div>
                  </div>
             </div>
