@@ -66,15 +66,16 @@ class VideoPlayerComponent extends React.Component {
                     <div className="embed-responsive embed-responsive-16by9">
                     <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${this.props.match.params.videoId}?rel=0`} allowFullScreen></iframe>
                  </div> 
+                 <hr />
                  <div className = "row">
                     <div className = "col-md-12">
-                        <h2>
+                        <h4>
                         <span className="oi oi-eye text-dark"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.viewCount}&emsp; &emsp;
                         
                         <span className="oi oi-thumb-up text-success"></span> {this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.likeCount}&emsp; &emsp;
                         
                         <span className="oi oi-thumb-down text-dark"></span>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.dislikeCount}
-                        </h2>
+                        </h4>
                         <hr />
                     </div>
                  </div>
@@ -85,6 +86,7 @@ class VideoPlayerComponent extends React.Component {
                  </div>
                  <div className = "row">
                      <div className = "col-md-8">
+                         <h3>{this.props.currentPlayerVideo.statistics && this.props.currentPlayerVideo.statistics.commentCount} Comments</h3>
                          <Comments videoId = {this.props.match.params.videoId} />
                      </div>
                  </div>

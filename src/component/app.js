@@ -7,6 +7,8 @@ import Menu from './menu.js';
 import Trending from './trending.js';
 import Search from './search.js';
 import VideoPlayer from './videoPlayer.js';
+import Profile from './profile.js';
+import Logout from './logout.js';
  
 
 
@@ -14,7 +16,6 @@ class App extends React.Component {
     render(){
         return(
             <Provider store = {store}>
-                <Router>
                         <div className = "container">
                             <div className = "row">
                                 <div className = "col-md-3">
@@ -22,13 +23,14 @@ class App extends React.Component {
                                 </div>
 
                                 <div className = "col-md-9">
-                                    <Route  path = "/" exact ={true} component = {Trending} />
-                                    <Route  path = "/search" component = {Search} />
-                                    <Route  path = "/player/:videoId" component = {VideoPlayer} />
+                                    <Route  path = "/app" exact ={true} component = {Trending} />
+                                    <Route  path = "/app/search" component = {Search} />
+                                    <Route  path = "/app/player/:videoId" component = {VideoPlayer} />
+                                    <Route path = "/app/profile" component = {Profile} />
+                                    <Route path = "/app/logout" component = {Logout} />
                                 </div>
                             </div>
                         </div>
-                </Router>
             </Provider>
         )
     }
