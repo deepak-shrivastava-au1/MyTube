@@ -5,7 +5,7 @@ class Logout extends React.Component {
    
     render(){
         localStorage.removeItem("user");
-
+ 
         return(
             <div>
                 <p> Loging You Out ! Please Wait...</p>
