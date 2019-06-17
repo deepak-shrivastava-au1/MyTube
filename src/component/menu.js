@@ -34,6 +34,10 @@ class MenuComponent extends React.Component {
                         </li>
                     )
                 })}
+                 <li className="list-group-item">
+                    <Link to= "/app/playlists/create">
+                    <span className="oi oi-plus"></span> &nbsp;Create Playlist</Link>
+                    </li>
 
                 <li className="list-group-item bg-success text-white">My Account</li>
                 <li className="list-group-item">

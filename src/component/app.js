@@ -9,6 +9,8 @@ import Search from './search.js';
 import VideoPlayer from './videoPlayer.js';
 import Profile from './profile.js';
 import Logout from './logout.js';
+import CreatePlaylist from './createPlaylist.js';
+
  
 
 
@@ -28,6 +30,7 @@ class App extends React.Component {
                                     <Route  path = "/app/player/:videoId" component = {VideoPlayer} />
                                     <Route path = "/app/profile" component = {Profile} />
                                     <Route path = "/app/logout" component = {Logout} />
+                                    <Route path = "/app/Playlists/create" component = {CreatePlaylist} />
                                 </div>
                             </div>
                         </div>
