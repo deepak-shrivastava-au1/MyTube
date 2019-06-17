@@ -23,6 +23,31 @@ class CreatePlaylist extends React.Component {
             [name]: event.target.value
         });
     }
+
+validateForm(){
+
+    if(!this.state.name) {
+        this.setState({
+        formState: {
+            isNameValid: false
+           }
+        });
+    }
+    if(!this.state.description) {
+        this.setState({
+        formState: {
+            isDescriptionValid: false
+           }
+        });
+    }
+    
+}
+
+handleSubmit(event){
+    event.preventDefault();
+    this.validateForm();
+}
+
         
     render(){
         return(
@@ -69,7 +94,7 @@ class CreatePlaylist extends React.Component {
                                     </textarea>
                                 </label>
                             </div>
-                             <button type = "submit" className = "btn btn-success">Create Playlist</button>  
+                             <button onClick = {this.onChange.bind(this)} type = "submit" className = "btn btn-success">Create Playlist</button>  
                      </div> 
                 </form>   
             </div>
