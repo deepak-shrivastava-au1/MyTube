@@ -1,6 +1,8 @@
 import React from 'react';
-
-class CreatePlaylist extends React.Component {
+import {connect} from 'react-redux';
+import {stateMapper} from '../store/store.js';
+import {Redirect} from 'react-router-dom';
+class CreaterPlaylistComponent extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -17,7 +19,8 @@ class CreatePlaylist extends React.Component {
 
         this.onChange = this.onChange.bind(this);
     }
-    onChange(event) {
+
+onChange(event) {
         let name = event.target.name ;
         this.setState({
             [name]: event.target.value
@@ -26,30 +29,52 @@ class CreatePlaylist extends React.Component {
 
 validateForm(){
 
-    if(!this.state.name) {
-        this.setState({
-        formState: {
-            isNameValid: false
-           }
-        });
-    }
-    if(!this.state.description) {
-        this.setState({
-        formState: {
-            isDescriptionValid: false
-           }
-        });
-    }
+   let newFormState = {
+            isFormValid: true,
+            isNameValid: true,
+            isDescriptionValid: true
+   };
+
+   if(!this.state.name) {
+       newFormState.isNameValid = false;
+       newFormState.isFormValid = false;
+   }
+   if(!this.state.description) {
+    newFormState.isDescriptionValid = false;
+    newFormState.isFormValid = false;
+}
+    this.setState({
+        formState: newFormState
+    });
+
+    return newFormState.isFormValid;
     
 }
 
 handleSubmit(event){
     event.preventDefault();
-    this.validateForm();
+
+    if(!this.validateForm()) {
+        return;
+    }
+    this.props.dispatch({
+        type: "CREATE_PLAYLIST",
+        formData: this.state 
+    });
 }
 
-        
+componentWillUnmount() {
+    this.props.dispatch({
+        type: "CLEAR_PLAYLIST_CREATED"
+    });
+}
+
+
     render(){
+        if(this.props.newPlaylist.id) {
+            return <Redirect to = {`/app/playlist/${this.props.newPlaylist.id}`} />
+        }
+
         return(
             <div>
                 <h2 className = "text-success">Create a New Playlist</h2>
@@ -58,7 +83,7 @@ handleSubmit(event){
                     !this.state.formState.isFormValid && <div className = "alert alert-danger" >Please fill all the fields and try again !!</div>
                 }
                 
-                <form>
+                <form onSubmit = {this.handleSubmit.bind(this)}>
                      <div className = "form-group">
                         <label htmlFor = "">
                             Playlist Name:
@@ -94,11 +119,13 @@ handleSubmit(event){
                                     </textarea>
                                 </label>
                             </div>
-                             <button onClick = {this.onChange.bind(this)} type = "submit" className = "btn btn-success">Create Playlist</button>  
+                             <button onClick = {this.handleSubmit.bind(this)} type = "submit" className = "btn btn-success">Create Playlist</button>  
                      </div> 
                 </form>   
             </div>
         );
     }
 }
+let CreatePlaylist = connect(stateMapper)(CreaterPlaylistComponent);
+
 export default CreatePlaylist; 

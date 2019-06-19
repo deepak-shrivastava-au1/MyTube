@@ -29,7 +29,7 @@ class MenuComponent extends React.Component {
 
                 {this.props.playlists && this.props.playlists.map(p => {
                     return (
-                        <li id = {p.etag} className = " list-group-item">
+                        <li id = {p.id} className = " list-group-item">
                         <Link to={`/app/playlist/${p.id}`}> {p.snippet.title} </Link>
                         </li>
                     )

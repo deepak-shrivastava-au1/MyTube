@@ -6,9 +6,9 @@ import Login from './component/login.js';
 
 class Home extends React.Component {
     doRedirect() {
-        let loggedIn = false;// localStorage.getItem("user");
+        let User = localStorage.getItem("user");
 
-        if(loggedIn) {
+        if(User) {
             return <Redirect to = "/app" />;
         }else {
             return <Redirect to = "/login" />;

@@ -104,4 +104,46 @@ function fetchPlaylists(store, action) {
         console.log("Fetch Error ==>", err);
     });
 }
-export {fetchVideos, fetchCurrentVideo, fetchVideoComments, fetchPlaylists};
+
+function createPlaylist(store, action) {
+    let url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet";
+
+        let token = getUserToken();
+        if(!token) { return store; }
+
+        let newFormData = {
+                "snippet": {
+                    "title":action.formData.name,
+                    "description":action.formData.description
+        }
+    };
+
+    fetch(url, {
+        "method": "POST",
+        "headers": {
+            "Authorization": `Bearer ${token}`,
+            "content-type" : "application/json"
+        },
+        "body": JSON.stringify(newFormData)
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        store.dispatch({
+            type: "PLAYLIST_CREATED",
+            newPlaylist: data
+        });
+
+    })
+    .catch(function(err){
+        console.log("Fetch Error ==>", err);
+    });
+}
+export {
+        fetchVideos,
+        fetchCurrentVideo,
+        fetchVideoComments,
+        fetchPlaylists,
+        createPlaylist
+};
